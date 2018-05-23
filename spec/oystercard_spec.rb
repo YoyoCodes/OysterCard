@@ -65,14 +65,14 @@ describe OysterCard do
     # end
 
     it "has an empty list of journeys by default" do
-      expect(card.journey_log).to eq ({})
+      expect(card.journey_log).to eq []
     end
 
     it "touching in and out creates a journey" do
      card.top_up(20)
      card.touch_in(entry_station)
      card.touch_out(exit_station)
-     expect(card.journey_log).to eq ({entry_station => exit_station})
+     expect(card.journey_log).to eq [{entry_station => exit_station}]
     end
 
     it "stores a journey" do
