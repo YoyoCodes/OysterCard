@@ -57,12 +57,12 @@ describe OysterCard do
       expect(card.entry_station).to eq entry_station
     end
 
-    # it "stores the exit station" do
-    #   card.top_up(20)
-    #   card.touch_in(entry_station)
-    #   card.touch_out(exit_station)
-    #   expect(card.exit_station).to eq exit_station
-    # end
+    it "stores the exit station" do
+      card.top_up(20)
+      card.touch_in(entry_station)
+      card.touch_out(exit_station)
+      expect(card.exit_station).to eq exit_station
+    end
 
     it "has an empty list of journeys by default" do
       expect(card.journey_log).to eq []
@@ -81,20 +81,5 @@ describe OysterCard do
       card.touch_out(exit_station)
       expect(card.journey_log).to include journey
     end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   end
 end
