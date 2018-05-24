@@ -31,7 +31,8 @@ describe OysterCard do
     end
 
     it "#touch_in if it's not #in_journey" do
-
+      card.top_up(OysterCard::MINIMUM_BALANCE)
+      expect(card).not_to be_in_journey
     end
 
     it "can #touch_out if it's not in journey" do
@@ -51,35 +52,35 @@ describe OysterCard do
       expect{card.touch_out(exit_station)}.to change{card.balance}.by -OysterCard::MINIMUM_FARE
     end
 
-    it "stores an entry station when you touch in" do
-      card.top_up(20)
-      card.touch_in(entry_station)
-      expect(card.entry_station).to eq entry_station
-    end
+    # it "stores an entry station when you touch in" do
+    #   card.top_up(20)
+    #   card.touch_in(entry_station)
+    #   expect(card.entry_station).to eq entry_station
+    # end
 
-    it "stores the exit station" do
-      card.top_up(20)
-      card.touch_in(entry_station)
-      card.touch_out(exit_station)
-      expect(card.exit_station).to eq exit_station
-    end
+    # it "stores the exit station" do
+    #   card.top_up(20)
+    #   card.touch_in(entry_station)
+    #   card.touch_out(exit_station)
+    #   expect(card.exit_station).to eq exit_station
+    # end
+    #
+    # it "has an empty list of journeys by default" do
+    #   expect(card.journey_log).to eq []
+    # end
 
-    it "has an empty list of journeys by default" do
-      expect(card.journey_log).to eq []
-    end
+    # it "touching in and out creates a journey" do
+    #  card.top_up(20)
+    #  card.touch_in(entry_station)
+    #  card.touch_out(exit_station)
+    #  expect(card.journey_log).to eq [{entry_station => exit_station}]
+    # end
 
-    it "touching in and out creates a journey" do
-     card.top_up(20)
-     card.touch_in(entry_station)
-     card.touch_out(exit_station)
-     expect(card.journey_log).to eq [{entry_station => exit_station}]
-    end
-
-    it "stores a journey" do
-      card.top_up(20)
-      card.touch_in(entry_station)
-      card.touch_out(exit_station)
-      expect(card.journey_log).to include journey
-    end
+    # it "stores a journey" do
+    #   card.top_up(20)
+    #   card.touch_in(entry_station)
+    #   card.touch_out(exit_station)
+    #   expect(card.journey_log).to include journey
+    # end
   end
 end
